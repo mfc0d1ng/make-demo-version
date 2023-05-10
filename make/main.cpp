@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     {
         if(!(!strcmp(argv[1], "-c") || !strcmp(argv[1], "-cpp")))
         {
-            if(!strcmp(argv[2], "-map"))
+            if(!strcmp(argv[2], "-map") || !strcmp(argv[2], "map"))
             {
                 /* Open the map file in the code editor specified by user */
                 open_map_file(argv[1], &map_file); 
