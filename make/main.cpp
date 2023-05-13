@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         std::printf("%s\n", "Missing option ... program terminated."); 
         return EXIT_FAILURE;
     }
-    if(argc == 2)
+    else if(argc == 2)
     {
         if(!(!strcmp(argv[1], "-c") || !strcmp(argv[1], "-cpp")))
         {
