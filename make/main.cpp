@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
         
 	    if(content[i-2] != ':')
             {
-                std::printf("Error: expected colon ':' at line %i ...\n%s\n", ++line,
+                std::printf("Error: expected colon ':' at line %i where '%c' is found ...\n%s\n", ++line, content[i-2],
                             "The basic textual structure of map.txt can't be changed.\n" 
                             "Fix this problem or remove the current map.txt and run the program again\n"
                             "in order to let the program to create A new map.txt in the program directory.\n"
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
 
             if(content[i-1] != '"')
             {
-                std::printf("Error: expected double quote '\"' at line %i ...\n%s\n", ++line,
+                std::printf("Error: expected double quote '\"' at line %i where '%c' is found ...\n%s\n", ++line, content[i-1],
                             "The basic textual structure of map.txt can't be changed.\n"
                             "Fix this problem or remove the current map.txt and run the program again\n"
                             "in order to let the program to create A new map.txt in the program directory.\n"
@@ -192,28 +192,37 @@ int main(int argc, char *argv[])
             }
 
             /* Fetch user's configuration */
-            for (; content[i] != '"'; ++i)
+            for (; ; ++i)
             {
                 if(content[i] == '\n')
                 {
                     content[i] = ' '; 
                 }
+                if(content[i] == '\\' && content[i+1] == '"')
+                {
+                    cmd.push_back('"');
+                    i++;
+                    continue;
+                }
+                else if(content[i-1] != '\\' && content[i] == '"')
+                {
+                    break;
+                }   
                 cmd.push_back(content[i]); 
-            }            
-            cmd.shrink_to_fit(); 
+            }
             break;
         }
         
     }
 
     /* Execute user's configuration */
+    const char *cmd_ptr = cmd.c_str();
     if(argc == 2)
     {
-        std::system(cmd.c_str());
+        std::system(cmd_ptr);
     }
     else if(argc == 3)
     {
-        const char *cmd_ptr = cmd.c_str();
         std::printf("\"%s\"\n", cmd_ptr);
         std::system(cmd_ptr); 
     }
