@@ -87,7 +87,6 @@ std::string get_tokens(const char *map_content, std::size_t map_size)
 {
     int ignore = 1;
     int read = true;
-    std::size_t cwspaces = 0;
     std::string tokens = {};
 
     std::size_t i = 0;
@@ -119,11 +118,11 @@ std::string get_tokens(const char *map_content, std::size_t map_size)
         
         if(read == true)
         {
-            if(map_content[i] == '"' && ignore == 1)
+            if((map_content[i-1] != '\\' && map_content[i] == '"') && ignore == 1)
             {
-                ignore = 0;
+                ignore = 0; 
             }
-            else if((map_content[i] == '"' || (map_content[i-1] != '\\' && map_content[i] == ':')) && ignore == 0)
+            else if(((map_content[i-1] != '\\' && map_content[i] == '"') || (map_content[i-1] != '\\' && map_content[i] == ':')) && ignore == 0)
             {
                 ignore = 1; 
             }
@@ -139,24 +138,17 @@ std::string get_tokens(const char *map_content, std::size_t map_size)
         }
         else
         {
-            if(ignore == 0 && !strncmp(&map_content[i], "\\:", 2))
+            if((map_content[i] == '\\' && map_content[i+1] == ':') && ignore == 0)
             {
                 tokens.push_back(':');
-                i++;
+                i++; 
                 continue;
             }
-
-            if(map_content[i] == ' ')
+            else if((map_content[i] == '\\' && map_content[i+1] == '#') && ignore == 0)
             {
-                cwspaces++;
-                if(cwspaces > 1)
-                {
-                    continue;
-                }
-            }
-            else
-            {
-                cwspaces = 0;
+                tokens.push_back('#');
+                i++; 
+                continue;
             }
 
             tokens.push_back(map_content[i]);  
