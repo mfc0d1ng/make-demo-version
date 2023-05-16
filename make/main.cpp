@@ -219,6 +219,7 @@ int main(int argc, char *argv[])
         std::printf("\"%s\"\n", cmd_ptr);
         std::system(cmd_ptr); 
     }
+    else
     {
     }
 
