@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     }
     else if(argc == 2)
     {
-        if(!(!strcmp(argv[1], "c")    || !strcmp(argv[1], "cpp") || !strcmp(argv[1], "xc8") ||
+        if(!(!strcmp(argv[1], "c")    || !strcmp(argv[1], "cpp") || !strcmp(argv[1], "xc8")  ||
 	     !strcmp(argv[1], "rust") || !strcmp(argv[1], "zig") || !strcmp(argv[1], "java")
 	  ) )
         {
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     }
     else if(argc == 3)
     {
-        if(!(!strcmp(argv[1], "c")    || !strcmp(argv[1], "cpp") || !strcmp(argv[1], "xc8") ||
+        if(!(!strcmp(argv[1], "c")    || !strcmp(argv[1], "cpp") || !strcmp(argv[1], "xc8")  ||
 	     !strcmp(argv[1], "rust") || !strcmp(argv[1], "zig") || !strcmp(argv[1], "java")
 	  ) )
         {
