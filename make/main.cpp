@@ -31,7 +31,9 @@ int main(int argc, char *argv[])
     }
     else if(argc == 2)
     {
-        if(!(!strcmp(argv[1], "-c") || !strcmp(argv[1], "-cpp")))
+        if(!(!strcmp(argv[1], "c")    || !strcmp(argv[1], "cpp") || !strcmp(argv[1], "xc8") ||
+	     !strcmp(argv[1], "rust") || !strcmp(argv[1], "zig") || !strcmp(argv[1], "java")
+	  ) )
         {
             std::printf("Invalid option ==> (%s) ... program terminated.\n", argv[1]);
             return EXIT_FAILURE;   
@@ -39,7 +41,9 @@ int main(int argc, char *argv[])
     }
     else if(argc == 3)
     {
-        if(!(!strcmp(argv[1], "-c") || !strcmp(argv[1], "-cpp")))
+        if(!(!strcmp(argv[1], "c")    || !strcmp(argv[1], "cpp") || !strcmp(argv[1], "xc8") ||
+	     !strcmp(argv[1], "rust") || !strcmp(argv[1], "zig") || !strcmp(argv[1], "java")
+	  ) )
         {
             if(!strcmp(argv[2], "-map") || !strcmp(argv[2], "map"))
             {
@@ -152,11 +156,15 @@ int main(int argc, char *argv[])
             ++line;
         }
 
-        if((!strncmp(&content[i], "\"c\"", 3) && !strcmp(argv[1], "-c"))         ||
-           (!strncmp(&content[i], "\"cpp\"", 5) && !strcmp(argv[1], "-cpp")))
+        if((!strncmp(&content[i], "\"c\"", 3)     &&  !strcmp(argv[1], "c"))      ||
+           (!strncmp(&content[i], "\"cpp\"", 5)   &&  !strcmp(argv[1], "cpp"))    ||
+	   (!strncmp(&content[i], "\"xc8\"", 5)   &&  !strcmp(argv[1], "xc8"))    ||
+	   (!strncmp(&content[i], "\"rust\"", 6)  &&  !strcmp(argv[1], "rust"))   ||
+	   (!strncmp(&content[i], "\"zig\"", 5)   &&  !strcmp(argv[1], "zig"))    ||
+	   (!strncmp(&content[i], "\"java\"", 6)  &&  !strcmp(argv[1], "java")))
         {
 
-            i += strlen(argv[1]) + 3;
+            i += strlen(argv[1]) + 4;
             
 	   /**                                                    **
 	    * Checking the basic textual structure of the map file *
