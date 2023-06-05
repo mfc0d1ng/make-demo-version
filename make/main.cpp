@@ -202,7 +202,8 @@ int main(int argc, char *argv[])
                 if((content[i] == '\\') && content[i+1] == '"')
                 {
                     cmd.push_back('"');
-                    i += 2;
+                    ++i;
+		    continue;
                 }
                 else if((content[i-1] != '\\') && content[i] == '"')
                 {
