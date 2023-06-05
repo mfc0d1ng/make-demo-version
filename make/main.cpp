@@ -197,21 +197,18 @@ int main(int argc, char *argv[])
             {
                 if(content[i] == '\n')
                 {
-                    ++i;
+                    content[i] = ' ';
                 }
-		else
-		{
-		    cmd.push_back(content[i]);	
-		}
-                if(content[i] == '\\' && content[i+1] == '"')
+                if((content[i] == '\\') && content[i+1] == '"')
                 {
                     cmd.push_back('"');
                     i += 2;
                 }
-                else if(content[i-1] != '\\' && content[i] == '"')
+                else if((content[i-1] != '\\') && content[i] == '"')
                 {
                     break;
-                }    
+                }
+		cmd.push_back(content[i]);
             }
             break;
         }
