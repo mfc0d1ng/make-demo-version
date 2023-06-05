@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
             {
                 if(content[i] == '\n')
                 {
-                    cmd.push_back(' '); 
+                    ++i;
                 }
 		else
 		{
