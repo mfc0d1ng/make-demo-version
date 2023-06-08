@@ -55,13 +55,6 @@ void open_map_file(const char *argv1, FILE **map)
 }
 
 
-void clean_up(const char *__ptr, FILE **map)
-{
-    std::printf("Invalid option ==> (%s) ... program terminated.\n", __ptr); 
-    clean_up(map);
-}
-
-
 void clean_up(FILE **map)
 {
     FILE **__tmp = map;
