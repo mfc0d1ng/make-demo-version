@@ -151,6 +151,7 @@ std::string get_tokens(const char *map_content, std::size_t map_size)
         }
         else
         {
+            
             if((map_content[i] == '\\') && map_content[i+1] == ':')
             {
                 tokens.push_back(':');
